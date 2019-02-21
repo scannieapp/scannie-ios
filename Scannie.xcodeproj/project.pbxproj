@@ -7,21 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6181E4BCA16960449112AC86 /* Pods_Scannie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1053A922E0CC12F251315A /* Pods_Scannie.framework */; };
+		6511C4E8221F4737004C4717 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6511C4E7221F4737004C4717 /* AuthController.swift */; };
+		6511C4EA221F4742004C4717 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6511C4E9221F4742004C4717 /* MainController.swift */; };
 		65CE596C221F3D3E00BEA87D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CE596B221F3D3E00BEA87D /* AppDelegate.swift */; };
-		65CE596E221F3D3E00BEA87D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CE596D221F3D3E00BEA87D /* ViewController.swift */; };
 		65CE5971221F3D3E00BEA87D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65CE596F221F3D3E00BEA87D /* Main.storyboard */; };
 		65CE5973221F3D4000BEA87D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65CE5972221F3D4000BEA87D /* Assets.xcassets */; };
 		65CE5976221F3D4000BEA87D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65CE5974221F3D4000BEA87D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scannie/Pods-Scannie.release.xcconfig"; sourceTree = "<group>"; };
+		6511C4E7221F4737004C4717 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
+		6511C4E9221F4742004C4717 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		65CE5968221F3D3E00BEA87D /* Scannie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scannie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65CE596B221F3D3E00BEA87D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		65CE596D221F3D3E00BEA87D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		65CE5970221F3D3E00BEA87D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65CE5972221F3D4000BEA87D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65CE5975221F3D4000BEA87D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65CE5977221F3D4000BEA87D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E145DF6967CF175002A65519 /* Pods-Scannie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scannie/Pods-Scannie.debug.xcconfig"; sourceTree = "<group>"; };
+		FF1053A922E0CC12F251315A /* Pods_Scannie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scannie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6181E4BCA16960449112AC86 /* Pods_Scannie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +47,8 @@
 			children = (
 				65CE596A221F3D3E00BEA87D /* Scannie */,
 				65CE5969221F3D3E00BEA87D /* Products */,
+				FA1935E5E8EAC2083F219C60 /* Pods */,
+				9E527E5C3D2A002A7BA48E54 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +64,31 @@
 			isa = PBXGroup;
 			children = (
 				65CE596B221F3D3E00BEA87D /* AppDelegate.swift */,
-				65CE596D221F3D3E00BEA87D /* ViewController.swift */,
+				6511C4E7221F4737004C4717 /* AuthController.swift */,
+				6511C4E9221F4742004C4717 /* MainController.swift */,
 				65CE596F221F3D3E00BEA87D /* Main.storyboard */,
 				65CE5972221F3D4000BEA87D /* Assets.xcassets */,
 				65CE5974221F3D4000BEA87D /* LaunchScreen.storyboard */,
 				65CE5977221F3D4000BEA87D /* Info.plist */,
 			);
 			path = Scannie;
+			sourceTree = "<group>";
+		};
+		9E527E5C3D2A002A7BA48E54 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF1053A922E0CC12F251315A /* Pods_Scannie.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA1935E5E8EAC2083F219C60 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E145DF6967CF175002A65519 /* Pods-Scannie.debug.xcconfig */,
+				5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65CE597A221F3D4000BEA87D /* Build configuration list for PBXNativeTarget "Scannie" */;
 			buildPhases = (
+				522C7FA7202823378AB26AE9 /* [CP] Check Pods Manifest.lock */,
 				65CE5964221F3D3E00BEA87D /* Sources */,
 				65CE5965221F3D3E00BEA87D /* Frameworks */,
 				65CE5966221F3D3E00BEA87D /* Resources */,
+				670D292E294EB54CB9758239 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,12 +159,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		522C7FA7202823378AB26AE9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Scannie-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		670D292E294EB54CB9758239 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Scannie/Pods-Scannie-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Blockstack/Blockstack.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/WeScan/WeScan.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Blockstack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WeScan.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Scannie/Pods-Scannie-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		65CE5964221F3D3E00BEA87D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65CE596E221F3D3E00BEA87D /* ViewController.swift in Sources */,
+				6511C4EA221F4742004C4717 /* MainController.swift in Sources */,
+				6511C4E8221F4737004C4717 /* AuthController.swift in Sources */,
 				65CE596C221F3D3E00BEA87D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +361,7 @@
 		};
 		65CE597B221F3D4000BEA87D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E145DF6967CF175002A65519 /* Pods-Scannie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +379,7 @@
 		};
 		65CE597C221F3D4000BEA87D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

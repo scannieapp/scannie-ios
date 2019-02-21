@@ -1,0 +1,24 @@
+PODS:
+  - Blockstack (0.5.1):
+    - CryptoSwift
+  - CryptoSwift (0.14.0)
+  - WeScan (1.0.0)
+
+DEPENDENCIES:
+  - Blockstack
+  - WeScan (>= 0.9)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Blockstack
+    - CryptoSwift
+    - WeScan
+
+SPEC CHECKSUMS:
+  Blockstack: 4fbd640c3a778a0e87eaedb38394555de75f902d
+  CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa
+  WeScan: a049a4a2a0eb1c4560cf649ebd933d07b0d9ef4c
+
+PODFILE CHECKSUM: 439a449a51d8ddea5bc32f3260ca8acc27d60f9a
+
+COCOAPODS: 1.5.3

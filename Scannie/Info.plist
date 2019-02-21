@@ -57,17 +57,7 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<false/>
-		<key>NSAllowsArbitraryLoadsInWebContent</key>
-		<false/>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>localhost:8080</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-		</dict>
+		<true/>
 	</dict>
 </dict>
 </plist>

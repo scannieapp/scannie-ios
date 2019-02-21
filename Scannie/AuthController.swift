@@ -52,7 +52,7 @@ class AuthController: UIViewController {
         } else {
             print("Currently signed out so signing in.")
             // Address of deployed example web app
-            Blockstack.shared.signIn(redirectURI: "http://localhost:8080/public/redirect.html",
+            Blockstack.shared.signIn(redirectURI: "http://localhost:8080/redirect.html",
                                      appDomain: URL(string: "http://localhost:8080")!) { authResult in
                                         switch authResult {
                                         case .success(let userData):

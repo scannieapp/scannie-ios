@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6181E4BCA16960449112AC86 /* Pods_Scannie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1053A922E0CC12F251315A /* Pods_Scannie.framework */; };
+		65115D6722207B6400EE9B84 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65115D6622207B6400EE9B84 /* RootController.swift */; };
+		65115D6922207B7900EE9B84 /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65115D6822207B7900EE9B84 /* LaunchController.swift */; };
 		6511C4E8221F4737004C4717 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6511C4E7221F4737004C4717 /* AuthController.swift */; };
 		6511C4EA221F4742004C4717 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6511C4E9221F4742004C4717 /* MainController.swift */; };
 		65CE596C221F3D3E00BEA87D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CE596B221F3D3E00BEA87D /* AppDelegate.swift */; };
@@ -18,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scannie/Pods-Scannie.release.xcconfig"; sourceTree = "<group>"; };
+		65115D6622207B6400EE9B84 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		65115D6822207B7900EE9B84 /* LaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchController.swift; sourceTree = "<group>"; };
 		6511C4E7221F4737004C4717 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		6511C4E9221F4742004C4717 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		65CE5968221F3D3E00BEA87D /* Scannie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scannie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +46,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65115D6522207B3600EE9B84 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				65115D6622207B6400EE9B84 /* RootController.swift */,
+				65115D6822207B7900EE9B84 /* LaunchController.swift */,
+				6511C4E7221F4737004C4717 /* AuthController.swift */,
+				6511C4E9221F4742004C4717 /* MainController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		65CE595F221F3D3E00BEA87D = {
 			isa = PBXGroup;
 			children = (
@@ -63,9 +78,8 @@
 		65CE596A221F3D3E00BEA87D /* Scannie */ = {
 			isa = PBXGroup;
 			children = (
+				65115D6522207B3600EE9B84 /* Controllers */,
 				65CE596B221F3D3E00BEA87D /* AppDelegate.swift */,
-				6511C4E7221F4737004C4717 /* AuthController.swift */,
-				6511C4E9221F4742004C4717 /* MainController.swift */,
 				65CE596F221F3D3E00BEA87D /* Main.storyboard */,
 				65CE5972221F3D4000BEA87D /* Assets.xcassets */,
 				65CE5974221F3D4000BEA87D /* LaunchScreen.storyboard */,
@@ -216,7 +230,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6511C4EA221F4742004C4717 /* MainController.swift in Sources */,
+				65115D6922207B7900EE9B84 /* LaunchController.swift in Sources */,
 				6511C4E8221F4737004C4717 /* AuthController.swift in Sources */,
+				65115D6722207B6400EE9B84 /* RootController.swift in Sources */,
 				65CE596C221F3D3E00BEA87D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,6 +381,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8HD2MKT2G;
 				INFOPLIST_FILE = Scannie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -383,6 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8HD2MKT2G;
 				INFOPLIST_FILE = Scannie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

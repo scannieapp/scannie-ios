@@ -7,40 +7,46 @@
 //
 
 import UIKit
-import WeScan
 
 class MainController: UIViewController {
+    
+    lazy var searchBar : UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width-70, height: 46))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        setNavigationBar()
+        setSearchBar()
     }
     
-    @IBAction func scan() {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setSearchBar()
+    }
+    
+    func setNavigationBar() {
         
-        let scannerViewController = ImageScannerController()
-        scannerViewController.imageScannerDelegate = self
-        present(scannerViewController, animated: true)
-    }    
-}
+        navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.isOpaque = true
+    }
+    
+    func setSearchBar() {
+        
+        for view in searchBar.subviews {
+            for subview in view.subviews {
+                if subview.isKind(of: UITextField.self) {
+                    let textField: UITextField = subview as! UITextField
+                    textField.backgroundColor = UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 0.12)
+                }
+            }
+        }
 
-extension MainController : ImageScannerControllerDelegate {
-    
-    func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
-        // You are responsible for carefully handling the error
-        print(error)
+        searchBar.placeholder = "Search"
+        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
+        navigationItem.leftBarButtonItem = leftNavBarButton
     }
     
-    func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
-        // The user successfully scanned an image, which is available in the ImageScannerResults
-        // You are responsible for dismissing the ImageScannerController
-        scanner.dismiss(animated: true)
-    }
-    
-    func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
-        // The user tapped 'Cancel' on the scanner
-        // You are responsible for dismissing the ImageScannerController
-        scanner.dismiss(animated: true)
-    }
 }

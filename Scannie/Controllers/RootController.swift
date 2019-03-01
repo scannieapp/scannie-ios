@@ -33,7 +33,7 @@ class RootController: UIViewController {
     }
     
     func switchToMainScreen() {
-        let mainController = self.storyboard?.instantiateViewController(withIdentifier: "mainVC") as! MainController
+        let mainController = self.storyboard?.instantiateViewController(withIdentifier: "mainTabVC") as! MainTabController
         animateFadeTransition(to: mainController)
     }
     

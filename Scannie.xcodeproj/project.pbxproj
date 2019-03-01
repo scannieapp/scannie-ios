@@ -16,6 +16,7 @@
 		65CE5971221F3D3E00BEA87D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65CE596F221F3D3E00BEA87D /* Main.storyboard */; };
 		65CE5973221F3D4000BEA87D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65CE5972221F3D4000BEA87D /* Assets.xcassets */; };
 		65CE5976221F3D4000BEA87D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65CE5974221F3D4000BEA87D /* LaunchScreen.storyboard */; };
+		65D362712225C19300B343A2 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D362702225C19300B343A2 /* MainTabController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		65CE5972221F3D4000BEA87D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65CE5975221F3D4000BEA87D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65CE5977221F3D4000BEA87D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65D362702225C19300B343A2 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		E145DF6967CF175002A65519 /* Pods-Scannie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scannie/Pods-Scannie.debug.xcconfig"; sourceTree = "<group>"; };
 		FF1053A922E0CC12F251315A /* Pods_Scannie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scannie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -53,6 +55,7 @@
 				65115D6822207B7900EE9B84 /* LaunchController.swift */,
 				6511C4E7221F4737004C4717 /* AuthController.swift */,
 				6511C4E9221F4742004C4717 /* MainController.swift */,
+				65D362702225C19300B343A2 /* MainTabController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			files = (
 				6511C4EA221F4742004C4717 /* MainController.swift in Sources */,
 				65115D6922207B7900EE9B84 /* LaunchController.swift in Sources */,
+				65D362712225C19300B343A2 /* MainTabController.swift in Sources */,
 				6511C4E8221F4737004C4717 /* AuthController.swift in Sources */,
 				65115D6722207B6400EE9B84 /* RootController.swift in Sources */,
 				65CE596C221F3D3E00BEA87D /* AppDelegate.swift in Sources */,

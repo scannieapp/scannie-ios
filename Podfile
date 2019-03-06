@@ -8,5 +8,6 @@ target 'Scannie' do
   # Pods for Scannie
   pod 'Blockstack'
   pod 'WeScan', '>= 0.9'
+  pod 'SVProgressHUD'
 
 end

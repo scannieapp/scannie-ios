@@ -8,6 +8,9 @@
 
 import UIKit
 import WeScan
+import SVProgressHUD
+import Blockstack
+import CryptoSwift
 
 class MainTabController: UITabBarController {
     
@@ -120,12 +123,148 @@ extension MainTabController : ImageScannerControllerDelegate {
         // The user successfully scanned an image, which is available in the ImageScannerResults
         // You are responsible for dismissing the ImageScannerController
         scanner.dismiss(animated: true)
+        
+        var documentImage : UIImage!
+        if results.enhancedImage != nil {
+            documentImage = results.enhancedImage!
+        } else {
+            documentImage = results.scannedImage
+        }
+        
+        let documentPDFData = createPDFDataFromImage(image: documentImage)
+        let thumbnail = documentImage.jpegData(compressionQuality: 0.1)
+        
+        if documentPDFData == nil || thumbnail == nil {
+            
+            DispatchQueue.main.async {
+                let msg = "Unable to convert image."
+                let alert = UIAlertController(title: "Error",
+                                              message: msg,
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            return
+        }
+        
+        let alert = UIAlertController(title: "Filename", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter filename"
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert!.textFields![0]
+            let bytes = (documentPDFData! as Data).bytes
+            let thumbnailBytes = thumbnail!.bytes
+            self.uploadFile(name: textField.text!, bytes: bytes, thumbnailBytes: thumbnailBytes)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
+    
+    func uploadFile(name: String, bytes: [UInt8], thumbnailBytes: [UInt8]) {
+        
+        let uuid = UUID().uuidString
+        let documentName = "\(uuid).pdf"
+        
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.clear)
+        SVProgressHUD.show()
+        
+        Blockstack.shared.getFile(at: "documents.json", decrypt: true, completion: { (response, error) in
+            
+            var documentsArray : Array<NSDictionary> = []
+            
+            if response != nil {
+                
+                print("get file response \(String(describing: response))")
+                
+                if let decryptedResponse = response as? DecryptedValue {
+                    let responseString = decryptedResponse.plainText
+                    
+                    if let parsedDocuments = responseString!.parseJSONString as? Array<Any> {
+                        documentsArray = parsedDocuments as! Array<NSDictionary>
+                    }
+                }
+                
+            } else if error != nil {
+                
+                print("get file error \(String(describing: error))")
+                
+                DispatchQueue.main.async {
+                    let msg = error!.localizedDescription
+                    let alert = UIAlertController(title: "Error",
+                                                  message: msg,
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    SVProgressHUD.dismiss()
+                }
+                return
+            }
+            
+            Blockstack.shared.putFile(to: "compressed_thumbnails/\(documentName)", bytes: thumbnailBytes, encrypt: true, completion: { (file, error) in
+                
+                Blockstack.shared.putFile(to: "documents/\(documentName)", bytes: bytes, encrypt: true, completion: { (file, error) in
+                    let newDocument = [
+                        "path": "documents/\(documentName)",
+                        "uploadedAt": Date().millisecondsSince1970,
+                        "uuid": uuid,
+                        "compressedPath": "compressed_thumbnails/\(documentName)",
+                        "name": name
+                        ] as NSDictionary
+                    
+                    documentsArray.append(newDocument)
+                    
+                    Blockstack.shared.putFile(to: "documents.json", text: self.json(from: documentsArray)!, encrypt: true, completion: { (file, error) in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                            SVProgressHUD.dismiss()
+                            print("Uploaded file")
+                        })
+                    })
+                })
+            })
+        })
+
+    }
+    
+    func createPDFDataFromImage(image: UIImage) -> NSMutableData? {
+        
+        let pdfData = NSMutableData()
+        let imgView = UIImageView.init(image: image)
+        let imageRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+        UIGraphicsBeginPDFContextToData(pdfData, imageRect, nil)
+        UIGraphicsBeginPDFPage()
+        let context = UIGraphicsGetCurrentContext()
+        imgView.layer.render(in: context!)
+        UIGraphicsEndPDFContext()
+        
+        //try saving in doc dir to confirm:
+        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
+        let path = dir?.appendingPathComponent("file.pdf")
+        
+        do {
+            try pdfData.write(to: path!, options: NSData.WritingOptions.atomic)
+        } catch {
+            print("error catched")
+            return nil
+        }
+        
+        return pdfData
+    }
+
+    
     
     func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
         // The user tapped 'Cancel' on the scanner
         // You are responsible for dismissing the ImageScannerController
         scanner.dismiss(animated: true)
     }
+    
+    func json(from object:Any) -> String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
+            return nil
+        }
+        return String(data: data, encoding: String.Encoding.utf8)
+    }
 }
+
 

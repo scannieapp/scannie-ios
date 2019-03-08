@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		6181E4BCA16960449112AC86 /* Pods_Scannie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1053A922E0CC12F251315A /* Pods_Scannie.framework */; };
+		6504BBBC22325A5E00013BC8 /* EmptyResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */; };
 		65115D6722207B6400EE9B84 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65115D6622207B6400EE9B84 /* RootController.swift */; };
 		65115D6922207B7900EE9B84 /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65115D6822207B7900EE9B84 /* LaunchController.swift */; };
 		6511C4E8221F4737004C4717 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6511C4E7221F4737004C4717 /* AuthController.swift */; };
 		6511C4EA221F4742004C4717 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6511C4E9221F4742004C4717 /* MainController.swift */; };
+		652596AE22302CFE00DD5376 /* DocumentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652596AD22302CFE00DD5376 /* DocumentListCell.swift */; };
+		652596B1223030D300DD5376 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652596B0223030D300DD5376 /* Document.swift */; };
 		65C54F73222D7C4E0070C14E /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C54F72222D7C4E0070C14E /* Parser.swift */; };
 		65C54F75222D7DED0070C14E /* DateMilliseconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C54F74222D7DED0070C14E /* DateMilliseconds.swift */; };
 		65CE596C221F3D3E00BEA87D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CE596B221F3D3E00BEA87D /* AppDelegate.swift */; };
@@ -23,10 +26,13 @@
 
 /* Begin PBXFileReference section */
 		5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scannie/Pods-Scannie.release.xcconfig"; sourceTree = "<group>"; };
+		6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultsController.swift; sourceTree = "<group>"; };
 		65115D6622207B6400EE9B84 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		65115D6822207B7900EE9B84 /* LaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchController.swift; sourceTree = "<group>"; };
 		6511C4E7221F4737004C4717 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		6511C4E9221F4742004C4717 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		652596AD22302CFE00DD5376 /* DocumentListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListCell.swift; sourceTree = "<group>"; };
+		652596B0223030D300DD5376 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		65C54F72222D7C4E0070C14E /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		65C54F74222D7DED0070C14E /* DateMilliseconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMilliseconds.swift; sourceTree = "<group>"; };
 		65CE5968221F3D3E00BEA87D /* Scannie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scannie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,9 +65,26 @@
 				65115D6822207B7900EE9B84 /* LaunchController.swift */,
 				6511C4E7221F4737004C4717 /* AuthController.swift */,
 				6511C4E9221F4742004C4717 /* MainController.swift */,
+				6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */,
 				65D362702225C19300B343A2 /* MainTabController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		652596AC22302CE700DD5376 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				652596AD22302CFE00DD5376 /* DocumentListCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		652596AF223030C100DD5376 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				652596B0223030D300DD5376 /* Document.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		65C54F71222D7C320070C14E /* Utils */ = {
@@ -94,6 +117,8 @@
 		65CE596A221F3D3E00BEA87D /* Scannie */ = {
 			isa = PBXGroup;
 			children = (
+				652596AF223030C100DD5376 /* Models */,
+				652596AC22302CE700DD5376 /* Views */,
 				65115D6522207B3600EE9B84 /* Controllers */,
 				65C54F71222D7C320070C14E /* Utils */,
 				65CE596B221F3D3E00BEA87D /* AppDelegate.swift */,
@@ -248,9 +273,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652596AE22302CFE00DD5376 /* DocumentListCell.swift in Sources */,
 				6511C4EA221F4742004C4717 /* MainController.swift in Sources */,
 				65115D6922207B7900EE9B84 /* LaunchController.swift in Sources */,
+				6504BBBC22325A5E00013BC8 /* EmptyResultsController.swift in Sources */,
 				65C54F73222D7C4E0070C14E /* Parser.swift in Sources */,
+				652596B1223030D300DD5376 /* Document.swift in Sources */,
 				65D362712225C19300B343A2 /* MainTabController.swift in Sources */,
 				6511C4E8221F4737004C4717 /* AuthController.swift in Sources */,
 				65C54F75222D7DED0070C14E /* DateMilliseconds.swift in Sources */,

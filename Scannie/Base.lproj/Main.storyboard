@@ -369,10 +369,16 @@
                                 <items>
                                     <barButtonItem systemItem="action" id="gWy-57-KVk">
                                         <color key="tintColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="share" destination="HCw-Ux-WLI" id="gxr-tB-6fK"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="8b7-T8-lSz"/>
                                     <barButtonItem systemItem="trash" id="lNN-jS-0V9">
                                         <color key="tintColor" red="0.63369666528583268" green="0.42352941176470588" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="delete" destination="HCw-Ux-WLI" id="Etj-hj-e8T"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>

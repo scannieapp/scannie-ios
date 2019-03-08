@@ -16,6 +16,7 @@ class DocumentController: UIViewController {
     @IBOutlet weak var pdfParentView    : UIView!
     var pdfView                         : PDFView!
     var document                        : Document!
+    var documentsArray                  : [Document]!
     var pdfData                         : NSData!
 
     override func viewDidLoad() {
@@ -66,6 +67,39 @@ class DocumentController: UIViewController {
     
     @IBAction func delete() {
         
+        let thumbnailBytes = (NSData(bytes: [] as [UInt8], length: 0) as Data).bytes
+        let bytes = (NSData(bytes: [] as [UInt8], length: 0) as Data).bytes
+        
+        SVProgressHUD.show()
+
+        Blockstack.shared.putFile(to: "compressed_thumbnails/\(document.name!)", bytes: thumbnailBytes, encrypt: true, completion: { (file, error) in
+            
+            Blockstack.shared.putFile(to: "documents/\(self.document.name!)", bytes: bytes, encrypt: true, completion: { (file, error) in
+
+                let indexOfObject = self.documentsArray.index{$0 === self.document}
+                self.documentsArray.remove(at: indexOfObject!)
+
+                var documentsArrayDictionary : Array<NSDictionary> = []
+                for document in self.documentsArray {
+                    documentsArrayDictionary.append(document.nsDictionary)
+                }
+                
+                Blockstack.shared.putFile(to: "documents.json", text: self.json(from: documentsArrayDictionary)!, encrypt: true, completion: { (file, error) in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        SVProgressHUD.dismiss()
+                        self.navigationController?.popViewController(animated: true)
+                        print("Deleted file")
+                    })
+                })
+            })
+        })
+    }
+    
+    func json(from object:Any) -> String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
+            return nil
+        }
+        return String(data: data, encoding: String.Encoding.utf8)
     }
     
 }

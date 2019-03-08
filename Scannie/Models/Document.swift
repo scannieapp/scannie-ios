@@ -14,8 +14,9 @@ class Document {
     var uploadedAt      : Date?
     var path            : String?
     var compressedPath  : String?
+    var uuid            : String?
     
-    init(name: String?, uploadedAt: Double? = nil, path: String?, compressedPath: String?) {
+    init(name: String?, uploadedAt: Double? = nil, path: String?, compressedPath: String?, uuid: String?) {
         if let name = name {
             self.name = name
         }
@@ -29,6 +30,20 @@ class Document {
         if let compressedPath = compressedPath {
             self.compressedPath = compressedPath
         }
+        if let uuid = uuid {
+            self.uuid = uuid
+        }
+    }
+    
+    var dictionary: [String: Any] {
+        return ["name": name!,
+                "uploadedAt": uploadedAt!.millisecondsSince1970,
+                "path": path!,
+                "compressedPath": compressedPath!,
+                "uuid": uuid!]
+    }
+    var nsDictionary: NSDictionary {
+        return dictionary as NSDictionary
     }
 
 }

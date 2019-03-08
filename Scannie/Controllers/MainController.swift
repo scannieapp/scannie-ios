@@ -8,6 +8,7 @@
 
 import UIKit
 import Blockstack
+import SVProgressHUD
 
 class MainController: UIViewController {
     
@@ -34,9 +35,6 @@ class MainController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refreshDocuments(_:)), for: .valueChanged)
         
         self.collectionView?.setContentOffset(CGPoint(x: 0, y: -80.0), animated: true)
-        self.refreshControl.beginRefreshing()
-        
-        self.fetchDocuments()
     }
     
     override func viewDidLayoutSubviews() {
@@ -54,6 +52,9 @@ class MainController: UIViewController {
         layout.itemSize = CGSize(width: UIScreen.main.bounds.size.width, height: 80)
         
         collectionView.setCollectionViewLayout(layout, animated: false)
+        
+        self.refreshControl.beginRefreshing()
+        self.fetchDocuments()
     }
     
     func setNavigationBar() {
@@ -87,6 +88,9 @@ class MainController: UIViewController {
     
     func fetchDocuments() {
         
+        self.refreshControl.endRefreshing()
+        SVProgressHUD.show()
+        
         Blockstack.shared.getFile(at: "documents.json", decrypt: true) { (response, error) in
             if let decryptedResponse = response as? DecryptedValue {
                 let responseString = decryptedResponse.plainText
@@ -100,20 +104,21 @@ class MainController: UIViewController {
                                 Document.init( name: document["name"] as? String,
                                             uploadedAt: document["uploadedAt"] as? Double,
                                             path: document["path"] as? String,
-                                            compressedPath: document["compressedPath"] as? String)
+                                            compressedPath: document["compressedPath"] as? String,
+                                            uuid: document["uuid"] as? String)
                             )
                         }
                     }
                 }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    SVProgressHUD.dismiss()
                     if self.documents.count == 0 {
                         self.showEmptyResults()
                     } else {
                         self.hideEmptyResults()
                     }
                     self.collectionView?.reloadData()
-                    self.refreshControl.endRefreshing()
                 })
             } else {
                 // Could not fetch documents.json file
@@ -152,6 +157,7 @@ class MainController: UIViewController {
         if segue.identifier == "showDocument" {
             let documentController = segue.destination as! DocumentController
             documentController.document = sender as? Document
+            documentController.documentsArray = documents
         }
     }
     

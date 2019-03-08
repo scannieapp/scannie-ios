@@ -62,6 +62,7 @@ class MainController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.isOpaque = true
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     func setSearchBar() {
@@ -147,6 +148,13 @@ class MainController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDocument" {
+            let documentController = segue.destination as! DocumentController
+            documentController.document = sender as? Document
+        }
+    }
+    
 }
 
 extension MainController : UICollectionViewDataSource {
@@ -181,5 +189,7 @@ extension MainController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let document = self.documents[indexPath.row]
+        performSegue(withIdentifier: "showDocument", sender: document)
     }
 }

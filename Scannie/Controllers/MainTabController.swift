@@ -54,11 +54,11 @@ class MainTabController: UITabBarController {
         let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: addButtonImage.size.width, height: addButtonImage.size.height))
         
         var addButtonFrame = addButton.frame
-        addButtonFrame.origin.y = view.bounds.height - addButtonFrame.height - (UIApplication.shared.delegate?.window??.safeAreaInsets.bottom ?? 0) - Dimensions.shadowPadding
+        addButtonFrame.origin.y = -addButtonFrame.height/2 - (UIApplication.shared.delegate?.window??.safeAreaInsets.bottom ?? 0) + Dimensions.shadowPadding
         addButtonFrame.origin.x = view.bounds.width/2 - addButtonFrame.size.width/2
         addButton.frame = addButtonFrame
         
-        view.addSubview(addButton)
+        tabBar.addSubview(addButton)
         
         addButton.setImage(addButtonImage, for: .normal)
         addButton.addTarget(self, action: #selector(scan(sender:)), for: .touchUpInside)
@@ -72,7 +72,7 @@ class MainTabController: UITabBarController {
         if underlineView == nil {
             underlineView = UIView()
             underlineView.backgroundColor = UIColor(red: 80/255, green: 227/255, blue: 194/255, alpha: 1)
-            view.addSubview(underlineView)
+            tabBar.addSubview(underlineView)
         } else {
             animate = true
         }
@@ -85,10 +85,10 @@ class MainTabController: UITabBarController {
         if animate {
             UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping:0.6, initialSpringVelocity: 0.4, options: UIView.AnimationOptions.curveEaseIn, animations:
                 {
-                    self.underlineView.frame = CGRect(x: originX, y: self.view.frame.size.height - 3 - self.tabBar.frame.size.height, width: Dimensions.underlineViewWidth, height: 3)
+                    self.underlineView.frame = CGRect(x: originX, y: -3, width: Dimensions.underlineViewWidth, height: 3)
             }, completion: nil )
         } else {
-            underlineView.frame = CGRect(x: originX, y: view.frame.size.height - 3 - tabBar.frame.size.height, width: Dimensions.underlineViewWidth, height: 3)
+            underlineView.frame = CGRect(x: originX, y: -3, width: Dimensions.underlineViewWidth, height: 3)
         }
         
         view.layoutIfNeeded()
@@ -131,7 +131,7 @@ extension MainTabController : ImageScannerControllerDelegate {
             documentImage = results.scannedImage
         }
         
-        let documentPDFData = createPDFDataFromImage(image: documentImage)
+        let documentPDFData = PDFUtils.createPDFDataFromImage(image: documentImage)
         let thumbnail = documentImage.jpegData(compressionQuality: 0.1)
         
         if documentPDFData == nil || thumbnail == nil {
@@ -225,33 +225,6 @@ extension MainTabController : ImageScannerControllerDelegate {
         })
 
     }
-    
-    func createPDFDataFromImage(image: UIImage) -> NSMutableData? {
-        
-        let pdfData = NSMutableData()
-        let imgView = UIImageView.init(image: image)
-        let imageRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
-        UIGraphicsBeginPDFContextToData(pdfData, imageRect, nil)
-        UIGraphicsBeginPDFPage()
-        let context = UIGraphicsGetCurrentContext()
-        imgView.layer.render(in: context!)
-        UIGraphicsEndPDFContext()
-        
-        //try saving in doc dir to confirm:
-        let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
-        let path = dir?.appendingPathComponent("file.pdf")
-        
-        do {
-            try pdfData.write(to: path!, options: NSData.WritingOptions.atomic)
-        } catch {
-            print("error catched")
-            return nil
-        }
-        
-        return pdfData
-    }
-
-    
     
     func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
         // The user tapped 'Cancel' on the scanner

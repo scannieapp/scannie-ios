@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6181E4BCA16960449112AC86 /* Pods_Scannie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1053A922E0CC12F251315A /* Pods_Scannie.framework */; };
 		6504BBBC22325A5E00013BC8 /* EmptyResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */; };
+		6504BBBE22325CEB00013BC8 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBD22325CEB00013BC8 /* DocumentController.swift */; };
+		6504BBC0223261DE00013BC8 /* PDFUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBF223261DE00013BC8 /* PDFUtils.swift */; };
 		65115D6722207B6400EE9B84 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65115D6622207B6400EE9B84 /* RootController.swift */; };
 		65115D6922207B7900EE9B84 /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65115D6822207B7900EE9B84 /* LaunchController.swift */; };
 		6511C4E8221F4737004C4717 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6511C4E7221F4737004C4717 /* AuthController.swift */; };
@@ -27,6 +29,8 @@
 /* Begin PBXFileReference section */
 		5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scannie/Pods-Scannie.release.xcconfig"; sourceTree = "<group>"; };
 		6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultsController.swift; sourceTree = "<group>"; };
+		6504BBBD22325CEB00013BC8 /* DocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
+		6504BBBF223261DE00013BC8 /* PDFUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFUtils.swift; sourceTree = "<group>"; };
 		65115D6622207B6400EE9B84 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
 		65115D6822207B7900EE9B84 /* LaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchController.swift; sourceTree = "<group>"; };
 		6511C4E7221F4737004C4717 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 				6511C4E9221F4742004C4717 /* MainController.swift */,
 				6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */,
 				65D362702225C19300B343A2 /* MainTabController.swift */,
+				6504BBBD22325CEB00013BC8 /* DocumentController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -92,6 +97,7 @@
 			children = (
 				65C54F72222D7C4E0070C14E /* Parser.swift */,
 				65C54F74222D7DED0070C14E /* DateMilliseconds.swift */,
+				6504BBBF223261DE00013BC8 /* PDFUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -275,6 +281,7 @@
 			files = (
 				652596AE22302CFE00DD5376 /* DocumentListCell.swift in Sources */,
 				6511C4EA221F4742004C4717 /* MainController.swift in Sources */,
+				6504BBBE22325CEB00013BC8 /* DocumentController.swift in Sources */,
 				65115D6922207B7900EE9B84 /* LaunchController.swift in Sources */,
 				6504BBBC22325A5E00013BC8 /* EmptyResultsController.swift in Sources */,
 				65C54F73222D7C4E0070C14E /* Parser.swift in Sources */,
@@ -284,6 +291,7 @@
 				65C54F75222D7DED0070C14E /* DateMilliseconds.swift in Sources */,
 				65115D6722207B6400EE9B84 /* RootController.swift in Sources */,
 				65CE596C221F3D3E00BEA87D /* AppDelegate.swift in Sources */,
+				6504BBC0223261DE00013BC8 /* PDFUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

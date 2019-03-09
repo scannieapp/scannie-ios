@@ -13,6 +13,7 @@ import SVProgressHUD
 class MainController: UIViewController {
     
     lazy var searchBar                  : UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width-70, height: 46))
+    var sortButton                      : UIButton!
     @IBOutlet weak var collectionView   : UICollectionView!
     private let refreshControl          = UIRefreshControl()
     var emptyResultsController          : EmptyResultsController!
@@ -25,8 +26,8 @@ class MainController: UIViewController {
         
         // Do any additional setup after loading the view.
         setNavigationBar()
-        setSearchBar()
-        
+        setSortButton(image: nil)
+
         if #available(iOS 10.0, *) {
             collectionView?.refreshControl = self.refreshControl
         } else {
@@ -82,6 +83,23 @@ class MainController: UIViewController {
         navigationItem.leftBarButtonItem = leftNavBarButton
     }
     
+    func setSortButton(image: UIImage?) {
+        
+        if self.sortButton == nil {
+            self.sortButton = UIButton()
+            self.sortButton.addTarget(self, action: #selector(sortDocuments), for: .touchUpInside)
+        }
+        
+        var sortImage = image
+        if image == nil {
+            sortImage = UIImage(named: "sort-date.png")
+        }
+        self.sortButton.setImage(sortImage, for: .normal)
+        self.sortButton.frame = CGRect(x: 0, y: 0, width: sortImage!.size.width, height: sortImage!.size.height)
+        let rightNavBarButton = UIBarButtonItem(customView:self.sortButton)
+        navigationItem.rightBarButtonItem = rightNavBarButton
+    }
+    
     @objc func refreshDocuments(_ sender: Any) {
         fetchDocuments()
     }
@@ -110,6 +128,8 @@ class MainController: UIViewController {
                         }
                     }
                 }
+                
+                self.documents = self.documents.sorted { $0.uploadedAt!.millisecondsSince1970 > $1.uploadedAt!.millisecondsSince1970 }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                     SVProgressHUD.dismiss()
@@ -151,6 +171,25 @@ class MainController: UIViewController {
             emptyResultsController.removeFromParent()
             emptyResultsController = nil
         }
+    }
+    
+    @objc func sortDocuments() {
+        
+        let alert = UIAlertController(title: "",
+                                      message: "Sort Documents",
+                                      preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Latest First", style: UIAlertAction.Style.default, handler: { _ in
+            self.documents = self.documents.sorted { $0.uploadedAt!.millisecondsSince1970 > $1.uploadedAt!.millisecondsSince1970 }
+            self.collectionView.reloadData()
+            self.setSortButton(image: UIImage(named: "sort-date"))
+        }))
+        alert.addAction(UIAlertAction(title: "Alphabetically", style: UIAlertAction.Style.default, handler: { _ in
+            self.documents = self.documents.sorted { $0.name! < $1.name! }
+            self.collectionView.reloadData()
+            self.setSortButton(image: UIImage(named: "sort-name"))
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -67,32 +67,39 @@ class DocumentController: UIViewController {
     
     @IBAction func delete() {
         
-        let thumbnailBytes = (NSData(bytes: [] as [UInt8], length: 0) as Data).bytes
-        let bytes = (NSData(bytes: [] as [UInt8], length: 0) as Data).bytes
-        
-        SVProgressHUD.show()
-
-        Blockstack.shared.putFile(to: "compressed_thumbnails/\(document.name!)", bytes: thumbnailBytes, encrypt: true, completion: { (file, error) in
+        let alert = UIAlertController(title: "Delete document",
+                                      message: "Are you sure you want to delete this document?",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: { _ in
+            let thumbnailBytes = (NSData(bytes: [] as [UInt8], length: 0) as Data).bytes
+            let bytes = (NSData(bytes: [] as [UInt8], length: 0) as Data).bytes
             
-            Blockstack.shared.putFile(to: "documents/\(self.document.name!)", bytes: bytes, encrypt: true, completion: { (file, error) in
-
-                let indexOfObject = self.documentsArray.index{$0 === self.document}
-                self.documentsArray.remove(at: indexOfObject!)
-
-                var documentsArrayDictionary : Array<NSDictionary> = []
-                for document in self.documentsArray {
-                    documentsArrayDictionary.append(document.nsDictionary)
-                }
+            SVProgressHUD.show()
+            
+            Blockstack.shared.putFile(to: "compressed_thumbnails/\(self.document.name!)", bytes: thumbnailBytes, encrypt: true, completion: { (file, error) in
                 
-                Blockstack.shared.putFile(to: "documents.json", text: self.json(from: documentsArrayDictionary)!, encrypt: true, completion: { (file, error) in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                        SVProgressHUD.dismiss()
-                        self.navigationController?.popViewController(animated: true)
-                        print("Deleted file")
+                Blockstack.shared.putFile(to: "documents/\(self.document.name!)", bytes: bytes, encrypt: true, completion: { (file, error) in
+                    
+                    let indexOfObject = self.documentsArray.index{$0 === self.document}
+                    self.documentsArray.remove(at: indexOfObject!)
+                    
+                    var documentsArrayDictionary : Array<NSDictionary> = []
+                    for document in self.documentsArray {
+                        documentsArrayDictionary.append(document.nsDictionary)
+                    }
+                    
+                    Blockstack.shared.putFile(to: "documents.json", text: self.json(from: documentsArrayDictionary)!, encrypt: true, completion: { (file, error) in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                            SVProgressHUD.dismiss()
+                            self.navigationController?.popViewController(animated: true)
+                            print("Deleted file")
+                        })
                     })
                 })
             })
-        })
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func json(from object:Any) -> String? {

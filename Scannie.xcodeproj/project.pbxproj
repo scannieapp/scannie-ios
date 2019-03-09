@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6181E4BCA16960449112AC86 /* Pods_Scannie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1053A922E0CC12F251315A /* Pods_Scannie.framework */; };
+		65014D9B2233BDFF0069A71A /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65014D9A2233BDFF0069A71A /* SettingsController.swift */; };
 		6504BBBC22325A5E00013BC8 /* EmptyResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */; };
 		6504BBBE22325CEB00013BC8 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBD22325CEB00013BC8 /* DocumentController.swift */; };
 		6504BBC0223261DE00013BC8 /* PDFUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBF223261DE00013BC8 /* PDFUtils.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scannie/Pods-Scannie.release.xcconfig"; sourceTree = "<group>"; };
+		65014D9A2233BDFF0069A71A /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultsController.swift; sourceTree = "<group>"; };
 		6504BBBD22325CEB00013BC8 /* DocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		6504BBBF223261DE00013BC8 /* PDFUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFUtils.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */,
 				65D362702225C19300B343A2 /* MainTabController.swift */,
 				6504BBBD22325CEB00013BC8 /* DocumentController.swift */,
+				65014D9A2233BDFF0069A71A /* SettingsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				65D362712225C19300B343A2 /* MainTabController.swift in Sources */,
 				6511C4E8221F4737004C4717 /* AuthController.swift in Sources */,
 				65C54F75222D7DED0070C14E /* DateMilliseconds.swift in Sources */,
+				65014D9B2233BDFF0069A71A /* SettingsController.swift in Sources */,
 				65115D6722207B6400EE9B84 /* RootController.swift in Sources */,
 				65CE596C221F3D3E00BEA87D /* AppDelegate.swift in Sources */,
 				6504BBC0223261DE00013BC8 /* PDFUtils.swift in Sources */,

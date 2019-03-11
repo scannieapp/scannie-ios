@@ -40,9 +40,23 @@ extension SettingsController : UITableViewDataSource {
             cell.textLabel?.text = "Logout"
         } else {
             cell.textLabel?.text = "Know more about Blockstack"
+            cell.accessoryType = .disclosureIndicator
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 30))
+        let versionLabel = UILabel(frame: CGRect(x: 16, y: 10, width: view.frame.size.width-32, height: 20))
+        if let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String, let buildNumber = Bundle.main.infoDictionary!["CFBundleVersion"] as? String {
+            versionLabel.text = "Version \(appVersion) (\(buildNumber))"
+        }
+        versionLabel.textColor = UIColor(red: 108/255, green: 108/255, blue: 108/255, alpha: 1)
+        versionLabel.font = UIFont(name: "Arial", size: 13)
+        footerView.addSubview(versionLabel)
+        return footerView
     }
 }
 
@@ -56,5 +70,7 @@ extension SettingsController : UITableViewDelegate {
         } else {
             UIApplication.shared.open(URL(string: "https://blockstack.org")!)
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

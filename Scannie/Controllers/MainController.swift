@@ -145,16 +145,26 @@ class MainController: UIViewController {
                     }
                     self.collectionView?.reloadData()
                 })
-            } else {
+                
+            } else if error != nil {
+                print("error  fetching documents \(String(describing: error?.localizedDescription))")
                 // Could not fetch documents.json file
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                     self.refreshControl.endRefreshing()
+                    SVProgressHUD.dismiss()
                     let msg = error!.localizedDescription
                     let alert = UIAlertController(title: "Error",
                                                   message: msg,
                                                   preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
+                })
+                
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    self.refreshControl.endRefreshing()
+                    SVProgressHUD.dismiss()
+                    self.showEmptyResults()
                 })
             }
         }

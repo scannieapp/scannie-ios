@@ -53,7 +53,7 @@
             </objects>
             <point key="canvasLocation" x="-466" y="27"/>
         </scene>
-        <!--Settings Controller-->
+        <!--Settings-->
         <scene sceneID="8cu-ul-pQo">
             <objects>
                 <viewController id="hTO-en-qgI" customClass="SettingsController" customModule="Scannie" customModuleProvider="target" sceneMemberID="viewController">
@@ -75,7 +75,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KrV-Oo-EmX">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -98,7 +98,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KiH-O6-QNO"/>
                     </view>
-                    <navigationItem key="navigationItem" id="u3L-l2-Gb8"/>
+                    <navigationItem key="navigationItem" title="Settings" id="u3L-l2-Gb8"/>
                     <connections>
                         <outlet property="tableView" destination="cyN-nk-JHm" id="iYZ-UY-U0w"/>
                     </connections>
@@ -115,7 +115,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any document!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQZ-mL-BNo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any documents!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQZ-mL-BNo">
                                 <rect key="frame" x="16" y="396" width="343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="at3-5u-Fqf"/>

@@ -54,7 +54,7 @@ class MainTabController: UITabBarController {
         let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: addButtonImage.size.width, height: addButtonImage.size.height))
         
         var addButtonFrame = addButton.frame
-        addButtonFrame.origin.y = -addButtonFrame.height/2 - (UIApplication.shared.delegate?.window??.safeAreaInsets.bottom ?? 0) + Dimensions.shadowPadding
+        addButtonFrame.origin.y = -addButtonFrame.height/2 + Dimensions.shadowPadding
         addButtonFrame.origin.x = view.bounds.width/2 - addButtonFrame.size.width/2
         addButton.frame = addButtonFrame
         

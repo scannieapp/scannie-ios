@@ -29,14 +29,18 @@ extension SettingsController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         
-        cell.textLabel?.text = "Logout"
+        if indexPath.row == 0 {
+            cell.textLabel?.text = "Logout"
+        } else {
+            cell.textLabel?.text = "Know more about Blockstack"
+        }
         
         return cell
     }
@@ -46,7 +50,11 @@ extension SettingsController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        Blockstack.shared.signUserOut()
-        AppDelegate.shared.rootViewController.switchToAuthScreen()
+        if indexPath.row == 0 {
+            Blockstack.shared.signUserOut()
+            AppDelegate.shared.rootViewController.switchToAuthScreen()
+        } else {
+            UIApplication.shared.open(URL(string: "https://blockstack.org")!)
+        }
     }
 }

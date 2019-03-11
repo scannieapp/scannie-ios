@@ -22,7 +22,7 @@ class DocumentController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = document.name
+        navigationItem.title = document.filename
         getFile()
     }
     
@@ -51,7 +51,7 @@ class DocumentController: UIViewController {
     
     @IBAction func share() {
         if pdfData != nil {
-            let activityVC = UIActivityViewController(activityItems: [document.name!, pdfData], applicationActivities: nil)
+            let activityVC = UIActivityViewController(activityItems: [document.filename!, pdfData], applicationActivities: nil)
             activityVC.popoverPresentationController?.sourceView = self.view
             
             self.present(activityVC, animated: true, completion: nil)
@@ -72,33 +72,38 @@ class DocumentController: UIViewController {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: { _ in
-            let thumbnailBytes = (NSData(bytes: [] as [UInt8], length: 0) as Data).bytes
-            let bytes = (NSData(bytes: [] as [UInt8], length: 0) as Data).bytes
-            
+
             SVProgressHUD.show()
             
-            Blockstack.shared.putFile(to: "compressed_thumbnails/\(self.document.name!)", bytes: thumbnailBytes, encrypt: true, completion: { (file, error) in
+            print("path \(self.document.path!)")
+            
+            var newDocuments = self.documentsArray!
+            let indexOfObject = self.documentsArray.index{$0 === self.document}
+            newDocuments.remove(at: indexOfObject!)
+
+            var documentsArrayDictionary : Array<NSDictionary> = []
+            for document in newDocuments {
+                documentsArrayDictionary.append(document.nsDictionary)
+            }
+
+            Blockstack.shared.putFile(to: "documents.json", text: self.json(from: documentsArrayDictionary)!, encrypt: true, completion: { (file, error) in
                 
-                Blockstack.shared.putFile(to: "documents/\(self.document.name!)", bytes: bytes, encrypt: true, completion: { (file, error) in
-                    
-                    let indexOfObject = self.documentsArray.index{$0 === self.document}
-                    self.documentsArray.remove(at: indexOfObject!)
-                    
-                    var documentsArrayDictionary : Array<NSDictionary> = []
-                    for document in self.documentsArray {
-                        documentsArrayDictionary.append(document.nsDictionary)
-                    }
-                    
-                    Blockstack.shared.putFile(to: "documents.json", text: self.json(from: documentsArrayDictionary)!, encrypt: true, completion: { (file, error) in
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                            SVProgressHUD.dismiss()
-                            self.navigationController?.popViewController(animated: true)
-                            print("Deleted file")
-                        })
-                    })
+                if self.document.compressedPath != nil {
+                    Blockstack.shared.putFile(to: self.document.compressedPath!, bytes: [], encrypt: true, completion: { (file, error) in })
+                }
+                
+                if self.document.path != nil {
+                    Blockstack.shared.putFile(to: self.document.path!, bytes: [], encrypt: true, completion: { (file, error) in })
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    SVProgressHUD.dismiss()
+                    self.navigationController?.popViewController(animated: true)
+                    print("Deleted file")
                 })
             })
         }))
+        
         self.present(alert, animated: true, completion: nil)
     }
     

@@ -119,7 +119,7 @@ class MainController: UIViewController {
                     for parsedDocument in parsedDocuments {
                         if let document = parsedDocument as? Dictionary<String, Any> {
                             self.documents.append(
-                                Document.init( name: document["name"] as? String,
+                                Document.init( filename: document["filename"] as? String,
                                             uploadedAt: document["uploadedAt"] as? Double,
                                             path: document["path"] as? String,
                                             compressedPath: document["compressedPath"] as? String,
@@ -184,7 +184,7 @@ class MainController: UIViewController {
             self.setSortButton(image: UIImage(named: "sort-date"))
         }))
         alert.addAction(UIAlertAction(title: "Alphabetically", style: UIAlertAction.Style.default, handler: { _ in
-            self.documents = self.documents.sorted { $0.name! < $1.name! }
+            self.documents = self.documents.sorted { $0.filename! < $1.filename! }
             self.collectionView.reloadData()
             self.setSortButton(image: UIImage(named: "sort-name"))
         }))
@@ -218,7 +218,7 @@ extension MainController : UICollectionViewDataSource {
         let document = documents[indexPath.row]
         cell.document = document
         
-        cell.fileNameLabel.text = document.name
+        cell.fileNameLabel.text = document.filename
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"

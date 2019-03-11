@@ -155,15 +155,15 @@ extension MainTabController : ImageScannerControllerDelegate {
             let textField = alert!.textFields![0]
             let bytes = (documentPDFData! as Data).bytes
             let thumbnailBytes = thumbnail!.bytes
-            self.uploadFile(name: textField.text!, bytes: bytes, thumbnailBytes: thumbnailBytes)
+            self.uploadFile(filename: textField.text!, bytes: bytes, thumbnailBytes: thumbnailBytes)
         }))
         self.present(alert, animated: true, completion: nil)
     }
     
-    func uploadFile(name: String, bytes: [UInt8], thumbnailBytes: [UInt8]) {
+    func uploadFile(filename: String, bytes: [UInt8], thumbnailBytes: [UInt8]) {
         
         let uuid = UUID().uuidString
-        let documentName = "\(uuid).pdf"
+        let path = "\(uuid).pdf"
         
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.clear)
         SVProgressHUD.show()
@@ -201,15 +201,15 @@ extension MainTabController : ImageScannerControllerDelegate {
                 return
             }
             
-            Blockstack.shared.putFile(to: "compressed_thumbnails/\(documentName)", bytes: thumbnailBytes, encrypt: true, completion: { (file, error) in
+            Blockstack.shared.putFile(to: "compressed_thumbnails/\(path)", bytes: thumbnailBytes, encrypt: true, completion: { (file, error) in
                 
-                Blockstack.shared.putFile(to: "documents/\(documentName)", bytes: bytes, encrypt: true, completion: { (file, error) in
+                Blockstack.shared.putFile(to: "documents/\(path)", bytes: bytes, encrypt: true, completion: { (file, error) in
                     let newDocument = [
-                        "path": "documents/\(documentName)",
+                        "path": "documents/\(path)",
                         "uploadedAt": Date().millisecondsSince1970,
                         "uuid": uuid,
-                        "compressedPath": "compressed_thumbnails/\(documentName)",
-                        "name": name
+                        "compressedPath": "compressed_thumbnails/\(path)",
+                        "filename": filename
                         ] as NSDictionary
                     
                     documentsArray.append(newDocument)

@@ -10,15 +10,15 @@ import UIKit
 
 class Document {
 
-    var name            : String?
+    var filename        : String?
     var uploadedAt      : Date?
     var path            : String?
     var compressedPath  : String?
     var uuid            : String?
     
-    init(name: String?, uploadedAt: Double? = nil, path: String?, compressedPath: String?, uuid: String?) {
-        if let name = name {
-            self.name = name
+    init(filename: String?, uploadedAt: Double? = nil, path: String?, compressedPath: String?, uuid: String?) {
+        if let filename = filename {
+            self.filename = filename
         }
         if let uploadedAt = uploadedAt {
             let date = Date(timeIntervalSince1970: TimeInterval(uploadedAt) / 1000)
@@ -36,7 +36,7 @@ class Document {
     }
     
     var dictionary: [String: Any] {
-        return ["name": name!,
+        return ["filename": filename!,
                 "uploadedAt": uploadedAt!.millisecondsSince1970,
                 "path": path!,
                 "compressedPath": compressedPath!,

@@ -442,6 +442,7 @@
 			baseConfigurationReference = E145DF6967CF175002A65519 /* Pods-Scannie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W8HD2MKT2G;
 				INFOPLIST_FILE = Scannie/Info.plist;
@@ -451,6 +452,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alves.Scannie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -461,6 +463,7 @@
 			baseConfigurationReference = 5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W8HD2MKT2G;
 				INFOPLIST_FILE = Scannie/Info.plist;
@@ -470,6 +473,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alves.Scannie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

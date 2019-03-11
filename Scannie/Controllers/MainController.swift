@@ -24,7 +24,6 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         setNavigationBar()
         setSortButton(image: nil)
 
@@ -36,6 +35,12 @@ class MainController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refreshDocuments(_:)), for: .valueChanged)
         
         self.collectionView?.setContentOffset(CGPoint(x: 0, y: -80.0), animated: true)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.refreshDocuments(_:)),
+            name: NSNotification.Name(rawValue: "uploadedFile"),
+            object: nil)
     }
     
     override func viewDidLayoutSubviews() {

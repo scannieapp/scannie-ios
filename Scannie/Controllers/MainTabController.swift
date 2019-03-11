@@ -218,6 +218,7 @@ extension MainTabController : ImageScannerControllerDelegate {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                             SVProgressHUD.dismiss()
                             print("Uploaded file")
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploadedFile"), object: nil)
                         })
                     })
                 })

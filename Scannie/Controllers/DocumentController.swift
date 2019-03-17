@@ -23,6 +23,7 @@ class DocumentController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = document.filename
+        navigationItem.largeTitleDisplayMode = .never
         getFile()
     }
     
@@ -40,9 +41,13 @@ class DocumentController: UIViewController {
                         
                         if self.pdfView == nil {
                             self.pdfView = PDFView(frame: self.pdfParentView.frame)
+                            self.pdfView.autoScales = true
                             self.pdfParentView.addSubview(self.pdfView)
                         }
                         self.pdfView.document = PDFDocument(data: self.pdfData as Data)
+                        self.pdfView.maxScaleFactor = 4.0
+                        self.pdfView.minScaleFactor = self.pdfView.scaleFactorForSizeToFit
+                        self.pdfView.zoomOut(nil)
                     })
                 }
             }

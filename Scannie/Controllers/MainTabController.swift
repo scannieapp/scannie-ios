@@ -19,6 +19,7 @@ class MainTabController: UITabBarController {
         static let extraTabBarItemPadding   : CGFloat = 25
         static let underlineViewWidth       : CGFloat = 54
         static let underlineViewPadding     : CGFloat = 45
+        static let middleButtonPadding      : CGFloat = 30
     }
     
     var tabIndex        = 0
@@ -29,7 +30,7 @@ class MainTabController: UITabBarController {
 
         setTabBarItemsSpacing()
         removeTopBorder()
-        setupMiddleButton()
+        setupMiddleButton()        
     }
         
     override func viewDidLayoutSubviews() {
@@ -50,18 +51,8 @@ class MainTabController: UITabBarController {
     
     func setupMiddleButton() {
 
-        let addButtonImage = UIImage(named: "add-icon")!
-        let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: addButtonImage.size.width, height: addButtonImage.size.height))
-        
-        var addButtonFrame = addButton.frame
-        addButtonFrame.origin.y = -addButtonFrame.height/2 + Dimensions.shadowPadding
-        addButtonFrame.origin.x = view.bounds.width/2 - addButtonFrame.size.width/2
-        addButton.frame = addButtonFrame
-        
-        tabBar.addSubview(addButton)
-        
-        addButton.setImage(addButtonImage, for: .normal)
-        addButton.addTarget(self, action: #selector(scan(sender:)), for: .touchUpInside)
+        let tabBar = self.tabBar as! CustomTabBar
+        tabBar.addButton.addTarget(self, action: #selector(scan(sender:)), for: .touchUpInside)
         
         view.layoutIfNeeded()
     }

@@ -10,31 +10,27 @@ import UIKit
 import Blockstack
 import SVProgressHUD
 
-class MainController: UIViewController {
+class MainController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
-    lazy var searchBar                  : UISearchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width-70, height: 46))
+    var searchController                : UISearchController!
     var sortButton                      : UIButton!
     @IBOutlet weak var collectionView   : UICollectionView!
     private let refreshControl          = UIRefreshControl()
     var emptyResultsController          : EmptyResultsController!
     var documents                       : [Document] = []
-    
+    var filteredDocuments               : [Document] = []
+
     let reuseIdentifier = "listCellId"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setSearchBar()
         setNavigationBar()
         setSortButton(image: nil)
-
-        if #available(iOS 10.0, *) {
-            collectionView?.refreshControl = self.refreshControl
-        } else {
-            self.collectionView?.addSubview(self.refreshControl)
-        }
-        refreshControl.addTarget(self, action: #selector(refreshDocuments(_:)), for: .valueChanged)
         
-        self.collectionView?.setContentOffset(CGPoint(x: 0, y: -80.0), animated: true)
+        collectionView?.refreshControl = self.refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshDocuments(_:)), for: .valueChanged)
         
         NotificationCenter.default.addObserver(
             self,
@@ -45,7 +41,7 @@ class MainController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setSearchBar()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +61,15 @@ class MainController: UIViewController {
     
     func setNavigationBar() {
         
+        if UIScreen.main.bounds.size.height > 568 {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationItem.largeTitleDisplayMode = .always
+        }
+        navigationController?.navigationBar.topItem?.title = "Your Documents"
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.foregroundColor : UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1),
+                NSAttributedString.Key.font: UIFont(name: "ArialBold", size: 22) ??
+                UIFont.boldSystemFont(ofSize: 22)]
         navigationController?.navigationBar.barTintColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = false
@@ -74,18 +79,12 @@ class MainController: UIViewController {
     
     func setSearchBar() {
         
-        for view in searchBar.subviews {
-            for subview in view.subviews {
-                if subview.isKind(of: UITextField.self) {
-                    let textField: UITextField = subview as! UITextField
-                    textField.backgroundColor = UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 0.12)
-                }
-            }
-        }
-
-        searchBar.placeholder = "Search"
-        let leftNavBarButton = UIBarButtonItem(customView:searchBar)
-        navigationItem.leftBarButtonItem = leftNavBarButton
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     func setSortButton(image: UIImage?) {
@@ -119,6 +118,7 @@ class MainController: UIViewController {
                 let responseString = decryptedResponse.plainText
                 
                 self.documents = []
+                self.filteredDocuments = []
                 
                 if let parsedDocuments = responseString!.parseJSONString as? Array<Any> {
                     for parsedDocument in parsedDocuments {
@@ -135,10 +135,11 @@ class MainController: UIViewController {
                 }
                 
                 self.documents = self.documents.sorted { $0.uploadedAt!.millisecondsSince1970 > $1.uploadedAt!.millisecondsSince1970 }
+                self.filteredDocuments = self.documents
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                     SVProgressHUD.dismiss()
-                    if self.documents.count == 0 {
+                    if self.filteredDocuments.count == 0 {
                         self.showEmptyResults()
                     } else {
                         self.hideEmptyResults()
@@ -193,12 +194,14 @@ class MainController: UIViewController {
         let alert = UIAlertController(title: "",
                                       message: "Sort Documents",
                                       preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Latest First", style: UIAlertAction.Style.default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Chronologically", style: UIAlertAction.Style.default, handler: { _ in
+            self.filteredDocuments = self.filteredDocuments.sorted { $0.uploadedAt!.millisecondsSince1970 > $1.uploadedAt!.millisecondsSince1970 }
             self.documents = self.documents.sorted { $0.uploadedAt!.millisecondsSince1970 > $1.uploadedAt!.millisecondsSince1970 }
             self.collectionView.reloadData()
             self.setSortButton(image: UIImage(named: "sort-date"))
         }))
         alert.addAction(UIAlertAction(title: "Alphabetically", style: UIAlertAction.Style.default, handler: { _ in
+            self.filteredDocuments = self.filteredDocuments.sorted { $0.filename! < $1.filename! }
             self.documents = self.documents.sorted { $0.filename! < $1.filename! }
             self.collectionView.reloadData()
             self.setSortButton(image: UIImage(named: "sort-name"))
@@ -215,6 +218,28 @@ class MainController: UIViewController {
         }
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+
+        DispatchQueue.main.async {
+            self.filteredDocuments = []
+            if text == "" {
+                self.filteredDocuments = self.documents
+            } else {
+                self.filteredDocuments = self.documents.filter { $0.filename!.lowercased().contains(text.lowercased()) }
+            }
+            if self.filteredDocuments.count == 0 {
+                self.showEmptyResults()
+            } else {
+                self.hideEmptyResults()
+            }
+            self.collectionView?.reloadData()
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchController.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension MainController : UICollectionViewDataSource {
@@ -224,13 +249,13 @@ extension MainController : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return documents.count
+        return filteredDocuments.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DocumentListCell
 
-        let document = documents[indexPath.row]
+        let document = filteredDocuments[indexPath.row]
         cell.document = document
         
         cell.fileNameLabel.text = document.filename
@@ -249,7 +274,7 @@ extension MainController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let document = self.documents[indexPath.row]
+        let document = self.filteredDocuments[indexPath.row]
         performSegue(withIdentifier: "showDocument", sender: document)
     }
 }

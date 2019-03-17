@@ -143,8 +143,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-documents" translatesAutoresizingMaskIntoConstraints="NO" id="Hx4-XX-mTe">
                                 <rect key="frame" x="120" y="197" width="135" height="126"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="135" id="B0a-Rj-hL0"/>
-                                    <constraint firstAttribute="height" constant="126" id="t1L-VW-Dwg"/>
+                                    <constraint firstAttribute="width" secondItem="Hx4-XX-mTe" secondAttribute="height" multiplier="15:14" id="5Ol-fL-h5H"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="135" id="B0a-Rj-hL0"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="rsW-gm-oQc"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="126" id="t1L-VW-Dwg"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -174,7 +176,7 @@
         <scene sceneID="uMB-2K-WNm">
             <objects>
                 <tabBarController storyboardIdentifier="mainTabVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wec-KE-l6I" customClass="MainTabController" customModule="Scannie" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="pM1-ES-5i6">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="pM1-ES-5i6" customClass="CustomTabBar" customModule="Scannie" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

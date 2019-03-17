@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6181E4BCA16960449112AC86 /* Pods_Scannie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1053A922E0CC12F251315A /* Pods_Scannie.framework */; };
 		65014D9B2233BDFF0069A71A /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65014D9A2233BDFF0069A71A /* SettingsController.swift */; };
+		65046149223EE49000357384 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65046148223EE49000357384 /* CustomTabBar.swift */; };
 		6504BBBC22325A5E00013BC8 /* EmptyResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */; };
 		6504BBBE22325CEB00013BC8 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBD22325CEB00013BC8 /* DocumentController.swift */; };
 		6504BBC0223261DE00013BC8 /* PDFUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBF223261DE00013BC8 /* PDFUtils.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scannie/Pods-Scannie.release.xcconfig"; sourceTree = "<group>"; };
 		65014D9A2233BDFF0069A71A /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		65046148223EE49000357384 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultsController.swift; sourceTree = "<group>"; };
 		6504BBBD22325CEB00013BC8 /* DocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		6504BBBF223261DE00013BC8 /* PDFUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFUtils.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				652596AD22302CFE00DD5376 /* DocumentListCell.swift */,
+				65046148223EE49000357384 /* CustomTabBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				652596AE22302CFE00DD5376 /* DocumentListCell.swift in Sources */,
+				65046149223EE49000357384 /* CustomTabBar.swift in Sources */,
 				6511C4EA221F4742004C4717 /* MainController.swift in Sources */,
 				6504BBBE22325CEB00013BC8 /* DocumentController.swift in Sources */,
 				65115D6922207B7900EE9B84 /* LaunchController.swift in Sources */,
@@ -444,13 +448,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W8HD2MKT2G;
+				DEVELOPMENT_TEAM = 57JMDA279Y;
 				INFOPLIST_FILE = Scannie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alves.Scannie;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alvesteam.scannie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -465,13 +469,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W8HD2MKT2G;
+				DEVELOPMENT_TEAM = 57JMDA279Y;
 				INFOPLIST_FILE = Scannie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alves.Scannie;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alvesteam.scannie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

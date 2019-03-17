@@ -48,6 +48,8 @@ class DocumentController: UIViewController {
                         self.pdfView.maxScaleFactor = 4.0
                         self.pdfView.minScaleFactor = self.pdfView.scaleFactorForSizeToFit
                         self.pdfView.zoomOut(nil)
+                        self.pdfView.zoomOut(nil)
+                        self.pdfView.zoomOut(nil)
                     })
                 }
             }

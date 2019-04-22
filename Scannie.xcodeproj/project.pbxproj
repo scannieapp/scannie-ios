@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6181E4BCA16960449112AC86 /* Pods_Scannie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1053A922E0CC12F251315A /* Pods_Scannie.framework */; };
 		65014D9B2233BDFF0069A71A /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65014D9A2233BDFF0069A71A /* SettingsController.swift */; };
 		65046149223EE49000357384 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65046148223EE49000357384 /* CustomTabBar.swift */; };
 		6504BBBC22325A5E00013BC8 /* EmptyResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */; };
@@ -26,10 +25,11 @@
 		65CE5973221F3D4000BEA87D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65CE5972221F3D4000BEA87D /* Assets.xcassets */; };
 		65CE5976221F3D4000BEA87D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65CE5974221F3D4000BEA87D /* LaunchScreen.storyboard */; };
 		65D362712225C19300B343A2 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D362702225C19300B343A2 /* MainTabController.swift */; };
+		FD9B8BA7AFB5666E2C5E555D /* Pods_Scannie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD4F96A9E564DE2C4D6C992 /* Pods_Scannie.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scannie/Pods-Scannie.release.xcconfig"; sourceTree = "<group>"; };
+		46FF0DCB24BEB57C99B50115 /* Pods-Scannie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.debug.xcconfig"; path = "Target Support Files/Pods-Scannie/Pods-Scannie.debug.xcconfig"; sourceTree = "<group>"; };
 		65014D9A2233BDFF0069A71A /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		65046148223EE49000357384 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		6504BBBB22325A5E00013BC8 /* EmptyResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultsController.swift; sourceTree = "<group>"; };
@@ -50,8 +50,8 @@
 		65CE5975221F3D4000BEA87D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65CE5977221F3D4000BEA87D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65D362702225C19300B343A2 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
-		E145DF6967CF175002A65519 /* Pods-Scannie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scannie/Pods-Scannie.debug.xcconfig"; sourceTree = "<group>"; };
-		FF1053A922E0CC12F251315A /* Pods_Scannie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scannie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6A593826938BFAD5C105F84 /* Pods-Scannie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scannie.release.xcconfig"; path = "Target Support Files/Pods-Scannie/Pods-Scannie.release.xcconfig"; sourceTree = "<group>"; };
+		AAD4F96A9E564DE2C4D6C992 /* Pods_Scannie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scannie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,13 +59,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6181E4BCA16960449112AC86 /* Pods_Scannie.framework in Frameworks */,
+				FD9B8BA7AFB5666E2C5E555D /* Pods_Scannie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52014EF6687839EFE228578E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				46FF0DCB24BEB57C99B50115 /* Pods-Scannie.debug.xcconfig */,
+				A6A593826938BFAD5C105F84 /* Pods-Scannie.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		65115D6522207B3600EE9B84 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,8 +122,8 @@
 			children = (
 				65CE596A221F3D3E00BEA87D /* Scannie */,
 				65CE5969221F3D3E00BEA87D /* Products */,
-				FA1935E5E8EAC2083F219C60 /* Pods */,
-				9E527E5C3D2A002A7BA48E54 /* Frameworks */,
+				52014EF6687839EFE228578E /* Pods */,
+				8577AF74360E655C3B34FB72 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,21 +151,12 @@
 			path = Scannie;
 			sourceTree = "<group>";
 		};
-		9E527E5C3D2A002A7BA48E54 /* Frameworks */ = {
+		8577AF74360E655C3B34FB72 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FF1053A922E0CC12F251315A /* Pods_Scannie.framework */,
+				AAD4F96A9E564DE2C4D6C992 /* Pods_Scannie.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FA1935E5E8EAC2083F219C60 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E145DF6967CF175002A65519 /* Pods-Scannie.debug.xcconfig */,
-				5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,11 +166,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65CE597A221F3D4000BEA87D /* Build configuration list for PBXNativeTarget "Scannie" */;
 			buildPhases = (
-				522C7FA7202823378AB26AE9 /* [CP] Check Pods Manifest.lock */,
+				14CF212D2CBF05A9C56C07A0 /* [CP] Check Pods Manifest.lock */,
 				65CE5964221F3D3E00BEA87D /* Sources */,
 				65CE5965221F3D3E00BEA87D /* Frameworks */,
 				65CE5966221F3D3E00BEA87D /* Resources */,
-				670D292E294EB54CB9758239 /* [CP] Embed Pods Frameworks */,
+				5FDE1573FE08C83D1B0E5E0F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -228,7 +228,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		522C7FA7202823378AB26AE9 /* [CP] Check Pods Manifest.lock */ = {
+		14CF212D2CBF05A9C56C07A0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -250,7 +250,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		670D292E294EB54CB9758239 /* [CP] Embed Pods Frameworks */ = {
+		5FDE1573FE08C83D1B0E5E0F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -258,7 +258,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Scannie/Pods-Scannie-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Scannie/Pods-Scannie-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Blockstack/Blockstack.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -275,7 +275,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Scannie/Pods-Scannie-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Scannie/Pods-Scannie-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -443,13 +443,14 @@
 		};
 		65CE597B221F3D4000BEA87D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E145DF6967CF175002A65519 /* Pods-Scannie.debug.xcconfig */;
+			baseConfigurationReference = 46FF0DCB24BEB57C99B50115 /* Pods-Scannie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 57JMDA279Y;
 				INFOPLIST_FILE = Scannie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,13 +465,14 @@
 		};
 		65CE597C221F3D4000BEA87D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B2E9434482FCE54956F9DCA /* Pods-Scannie.release.xcconfig */;
+			baseConfigurationReference = A6A593826938BFAD5C105F84 /* Pods-Scannie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 57JMDA279Y;
 				INFOPLIST_FILE = Scannie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

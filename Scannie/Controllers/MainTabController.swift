@@ -158,6 +158,7 @@ extension MainTabController : ImageScannerControllerDelegate {
         
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.clear)
         SVProgressHUD.show()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         Blockstack.shared.getFile(at: "documents.json", decrypt: true, completion: { (response, error) in
             
@@ -188,6 +189,7 @@ extension MainTabController : ImageScannerControllerDelegate {
                     self.present(alert, animated: true, completion: nil)
                     
                     SVProgressHUD.dismiss()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
                 return
             }
@@ -208,6 +210,7 @@ extension MainTabController : ImageScannerControllerDelegate {
                     Blockstack.shared.putFile(to: "documents.json", text: self.json(from: documentsArray)!, encrypt: true, completion: { (file, error) in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                             SVProgressHUD.dismiss()
+                            UIApplication.shared.isNetworkActivityIndicatorVisible = false
                             print("Uploaded file")
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploadedFile"), object: nil)
                         })

@@ -13,31 +13,54 @@ import SVProgressHUD
 
 class DocumentController: UIViewController {
     
-    @IBOutlet weak var pdfParentView    : UIView!
-    var pdfView                         : PDFView!
-    var document                        : Document!
-    var documentsArray                  : [Document]!
-    var pdfData                         : NSData!
+    @IBOutlet weak var pdfParentView        : UIView!
+    @IBOutlet weak var pdfPreviewImageView  : UIImageView!
+    var pdfView                             : PDFView!
+    var document                            : Document!
+    var documentsArray                      : [Document]!
+    var pdfData                             : NSData!
+    @IBOutlet weak var shareButton          : UIBarButtonItem!
+    @IBOutlet weak var loadingLabel         : UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = document.filename
         navigationItem.largeTitleDisplayMode = .never
-        getFile()
+        shareButton.isEnabled = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        getImagePreview()
+    }
+    
+    func getImagePreview() {
+        Blockstack.shared.getFile(at: document.compressedPath!, decrypt: true, completion: { (imageData, error) in
+            if let decryptedResponse = imageData as? DecryptedValue {
+                if let decryptedImage = decryptedResponse.bytes {
+                    let imageData = NSData(bytes: decryptedImage, length: decryptedImage.count)
+                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                        let image = UIImage(data: imageData as Data)
+                        self.pdfPreviewImageView.image = image
+                        self.loadingLabel.text = "Loading document..."
+                        self.getFile()
+                    })
+                }
+            }
+        })
     }
     
     func getFile() {
         
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.clear)
-        SVProgressHUD.show()
-
         Blockstack.shared.getFile(at: document.path!, decrypt: true, completion: { (imageData, error) in
             if let decryptedResponse = imageData as? DecryptedValue {
                 if let decryptedImage = decryptedResponse.bytes {
                     self.pdfData = NSData(bytes: decryptedImage, length: decryptedImage.count)
                     DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                        SVProgressHUD.dismiss()
+                        
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        
+                        self.shareButton.isEnabled = true
+                        self.loadingLabel.isHidden = true
+                        self.pdfPreviewImageView.isHidden = true
                         
                         if self.pdfView == nil {
                             self.pdfView = PDFView(frame: self.pdfParentView.frame)
@@ -81,6 +104,7 @@ class DocumentController: UIViewController {
         alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: { _ in
 
             SVProgressHUD.show()
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
             print("path \(self.document.path!)")
             
@@ -105,6 +129,7 @@ class DocumentController: UIViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                     SVProgressHUD.dismiss()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     self.navigationController?.popViewController(animated: true)
                     print("Deleted file")
                 })

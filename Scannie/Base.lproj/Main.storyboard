@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qwU-tb-KsP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qwU-tb-KsP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -407,6 +407,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="df6-BO-ZOA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading preview..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eo1-0d-Ppw">
+                                <rect key="frame" x="118.5" y="271" width="138" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="9QG-FR-1Dg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBl-IB-A1U">
                                 <rect key="frame" x="0.0" y="559" width="375" height="44"/>
                                 <constraints>
@@ -433,9 +445,15 @@
                         <constraints>
                             <constraint firstItem="fBl-IB-A1U" firstAttribute="trailing" secondItem="F1x-fo-CxF" secondAttribute="trailing" id="4ZW-qr-9hT"/>
                             <constraint firstItem="fBl-IB-A1U" firstAttribute="bottom" secondItem="F1x-fo-CxF" secondAttribute="bottom" id="CHb-rh-iZn"/>
+                            <constraint firstItem="fBl-IB-A1U" firstAttribute="top" secondItem="df6-BO-ZOA" secondAttribute="bottom" id="Gz2-wJ-ufp"/>
+                            <constraint firstItem="df6-BO-ZOA" firstAttribute="trailing" secondItem="F1x-fo-CxF" secondAttribute="trailing" id="Gzd-Hn-2dN"/>
                             <constraint firstItem="fBl-IB-A1U" firstAttribute="leading" secondItem="F1x-fo-CxF" secondAttribute="leading" id="Och-qU-xqO"/>
+                            <constraint firstItem="df6-BO-ZOA" firstAttribute="top" secondItem="F1x-fo-CxF" secondAttribute="top" id="QIo-xk-loW"/>
                             <constraint firstItem="fBl-IB-A1U" firstAttribute="top" secondItem="XHR-HX-pg6" secondAttribute="bottom" id="Y8q-Bk-sJb"/>
+                            <constraint firstItem="Eo1-0d-Ppw" firstAttribute="centerX" secondItem="a5j-mk-0rO" secondAttribute="centerX" id="YbJ-t7-8Qd"/>
                             <constraint firstItem="XHR-HX-pg6" firstAttribute="trailing" secondItem="F1x-fo-CxF" secondAttribute="trailing" id="aVX-K2-G8H"/>
+                            <constraint firstItem="df6-BO-ZOA" firstAttribute="leading" secondItem="F1x-fo-CxF" secondAttribute="leading" id="fR7-Eo-vyV"/>
+                            <constraint firstItem="Eo1-0d-Ppw" firstAttribute="centerY" secondItem="a5j-mk-0rO" secondAttribute="centerY" constant="-20" id="iXF-a5-N7y"/>
                             <constraint firstItem="XHR-HX-pg6" firstAttribute="leading" secondItem="F1x-fo-CxF" secondAttribute="leading" id="pW9-h0-b6o"/>
                             <constraint firstItem="XHR-HX-pg6" firstAttribute="top" secondItem="F1x-fo-CxF" secondAttribute="top" id="vWv-U0-rNc"/>
                         </constraints>
@@ -443,7 +461,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="MPQ-Y1-Uxm"/>
                     <connections>
+                        <outlet property="loadingLabel" destination="Eo1-0d-Ppw" id="iKV-oN-khh"/>
                         <outlet property="pdfParentView" destination="XHR-HX-pg6" id="9DS-FY-N06"/>
+                        <outlet property="pdfPreviewImageView" destination="df6-BO-ZOA" id="7IU-h8-wdD"/>
+                        <outlet property="shareButton" destination="gWy-57-KVk" id="Qya-Rp-0Sf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvW-8e-Zsk" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -112,6 +112,7 @@ class MainController: UIViewController, UISearchResultsUpdating, UISearchBarDele
         
         self.refreshControl.endRefreshing()
         SVProgressHUD.show()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         Blockstack.shared.getFile(at: "documents.json", decrypt: true) { (response, error) in
             if let decryptedResponse = response as? DecryptedValue {
@@ -139,6 +140,7 @@ class MainController: UIViewController, UISearchResultsUpdating, UISearchBarDele
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                     SVProgressHUD.dismiss()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     if self.filteredDocuments.count == 0 {
                         self.showEmptyResults()
                     } else {
@@ -153,6 +155,7 @@ class MainController: UIViewController, UISearchResultsUpdating, UISearchBarDele
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                     self.refreshControl.endRefreshing()
                     SVProgressHUD.dismiss()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     let msg = error!.localizedDescription
                     let alert = UIAlertController(title: "Error",
                                                   message: msg,
@@ -165,6 +168,7 @@ class MainController: UIViewController, UISearchResultsUpdating, UISearchBarDele
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                     self.refreshControl.endRefreshing()
                     SVProgressHUD.dismiss()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     self.showEmptyResults()
                 })
             }

@@ -66,7 +66,7 @@ extension SettingsController : UITableViewDelegate {
         
         if indexPath.row == 0 {
             Blockstack.shared.signUserOut()
-            AppDelegate.shared.rootViewController.switchToAuthScreen()
+            AppDelegate.shared.rootViewController.switchToOnboarding()
         } else {
             UIApplication.shared.open(URL(string: "https://blockstack.org")!)
         }

@@ -22,7 +22,9 @@ class LaunchController: UIViewController {
         } else {
             print("Not logged in")
             DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                AppDelegate.shared.rootViewController.switchToAuthScreen()
+//                AppDelegate.shared.rootViewController.switchToAuthScreen()
+                AppDelegate.shared.rootViewController.switchToOnboarding()
+
             })
         }
     }

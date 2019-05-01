@@ -19,6 +19,7 @@ class MainController: UIViewController, UISearchResultsUpdating, UISearchBarDele
     var emptyResultsController          : EmptyResultsController!
     var documents                       : [Document] = []
     var filteredDocuments               : [Document] = []
+    var searchBarText                   : String!
 
     let reuseIdentifier = "listCellId"
 
@@ -83,6 +84,7 @@ class MainController: UIViewController, UISearchResultsUpdating, UISearchBarDele
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search"
+        self.definesPresentationContext = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
@@ -137,6 +139,10 @@ class MainController: UIViewController, UISearchResultsUpdating, UISearchBarDele
                 
                 self.documents = self.documents.sorted { $0.uploadedAt!.millisecondsSince1970 > $1.uploadedAt!.millisecondsSince1970 }
                 self.filteredDocuments = self.documents
+                
+                if self.searchBarText != nil && self.searchBarText != "" {
+                    self.filterDocuments(text: self.searchBarText)
+                }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                     SVProgressHUD.dismiss()
@@ -224,7 +230,12 @@ class MainController: UIViewController, UISearchResultsUpdating, UISearchBarDele
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-
+        searchBarText = text
+        filterDocuments(text: text)
+    }
+    
+    func filterDocuments(text: String) {
+        
         DispatchQueue.main.async {
             self.filteredDocuments = []
             if text == "" {
@@ -239,6 +250,15 @@ class MainController: UIViewController, UISearchResultsUpdating, UISearchBarDele
             }
             self.collectionView?.reloadData()
         }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.text = searchBarText
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBarText = ""
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
